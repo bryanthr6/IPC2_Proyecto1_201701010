@@ -1,3 +1,4 @@
+
 def main():
     opcion = 0
     while opcion != 6:
@@ -37,8 +38,16 @@ def main():
                 print(" ")
 
 def cargar_archivo():
-    print("Cargando archivo...")
-    print(" ")
+    ruta = input("Ingrese la ruta completa del archivo XML: ")
+    try:
+        with open(ruta, 'r') as file:
+            print("Archivo cargado con éxito")
+            print(" ")
+            return ruta
+    except FileNotFoundError:
+        print("ERROR: No se pudo encontrar el archivo en la ruta proporcionada")
+        print("")
+        return ''
 
 def procesar_archivo():
     print("Procesando archivo...")
