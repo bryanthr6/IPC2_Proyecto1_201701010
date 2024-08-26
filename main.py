@@ -1,5 +1,12 @@
+from archivo import Archivo
+from procesador import Procesador
+from grafica import GeneradorGrafica
 
 def main():
+    archivo = Archivo()
+    procesador = Procesador()
+    generador_grafica = GeneradorGrafica()
+
     opcion = 0
     while opcion != 6:
         print("Menu Principal")
@@ -15,52 +22,33 @@ def main():
             print("ERROR: No ingresó un número entero")
             print(" ")
             continue
+
         match opcion:
             case 1:
-                cargar_archivo()
+                ruta = archivo.cargar_archivo()
             case 2:
-                procesar_archivo()
+                if archivo.ruta_archivo:
+                    procesador.procesar_archivo(archivo.ruta_archivo)
+                else:
+                    print(" ")
+                    print("ERROR: No hay archivo cargado")
+                    print(" ")
             case 3:
-                escribir_archivo()
+                archivo.escribir_archivo()
             case 4:
                 print('------------------------------------')
-                print('|DATOS DEL ESTUDIANDTE             |')
-                print('|Carnet: 201701010                 |')
-                print('|Nombre: Bryant Herrera Rubio      |')
+                print('|DATOS DEL ESTUDIANTE               |')
+                print('|Carnet: 201701010                  |')
+                print('|Nombre: Bryant Herrera Rubio       |')
                 print('------------------------------------')
                 print(" ")
             case 5:
-                generar_grafica()
+                generador_grafica.generar_grafica()
             case 6:
-                print("Saliendo...")    
+                print("Saliendo...")
             case _:
                 print("ERROR: Opción no válida")
                 print(" ")
 
-def cargar_archivo():
-    ruta = input("Ingrese la ruta completa del archivo XML: ")
-    try:
-        with open(ruta, 'r') as file:
-            print("Archivo cargado con éxito")
-            print(" ")
-            return ruta
-    except FileNotFoundError:
-        print("ERROR: No se pudo encontrar el archivo en la ruta proporcionada")
-        print("")
-        return ''
-
-def procesar_archivo():
-    print("Procesando archivo...")
-    print(" ")
-
-def escribir_archivo():
-    print("Escribiendo archivo...")
-    print(" ")
-
-def generar_grafica():
-    print("Generando gráfica...")
-    print(" ")
-
 if __name__ == '__main__':
     main()
-
