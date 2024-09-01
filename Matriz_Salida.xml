@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<matrices>
+    <matriz nombre="Matriz_Salida" n="5" m="7" g="5">
+        <dato x="1" y="1">4</dato>
+        <dato x="1" y="2">0</dato>
+        <dato x="1" y="3">6</dato>
+        <dato x="1" y="4">0</dato>
+        <dato x="1" y="5">2</dato>
+        <dato x="1" y="6">0</dato>
+        <dato x="1" y="7">4</dato>
+        <dato x="2" y="1">0</dato>
+        <dato x="2" y="2">1</dato>
+        <dato x="2" y="3">0</dato>
+        <dato x="2" y="4">2</dato>
+        <dato x="2" y="5">3</dato>
+        <dato x="2" y="6">1</dato>
+        <dato x="2" y="7">0</dato>
+        <dato x="3" y="1">3</dato>
+        <dato x="3" y="2">2</dato>
+        <dato x="3" y="3">1</dato>
+        <dato x="3" y="4">0</dato>
+        <dato x="3" y="5">2</dato>
+        <dato x="3" y="6">3</dato>
+        <dato x="3" y="7">1</dato>
+        <dato x="4" y="1">1</dato>
+        <dato x="4" y="2">0</dato>
+        <dato x="4" y="3">2</dato>
+        <dato x="4" y="4">3</dato>
+        <dato x="4" y="5">0</dato>
+        <dato x="4" y="6">1</dato>
+        <dato x="4" y="7">2</dato>
+        <dato x="5" y="1">0</dato>
+        <dato x="5" y="2">1</dato>
+        <dato x="5" y="3">0</dato>
+        <dato x="5" y="4">2</dato>
+        <dato x="5" y="5">3</dato>
+        <dato x="5" y="6">0</dato>
+        <dato x="5" y="7">1</dato>
+        <frecuencia g="1">2</frecuencia>
+        <frecuencia g="2">1</frecuencia>
+        <frecuencia g="3">1</frecuencia>
+        <frecuencia g="4">1</frecuencia>
+        <frecuencia g="5">1</frecuencia>
+    </matriz>
+</matrices>
