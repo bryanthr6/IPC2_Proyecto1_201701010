@@ -1,4 +1,4 @@
-#cargar.py
+
 import xml.etree.ElementTree as ET
 from lista import ListaCircular
 from matriz import Matriz

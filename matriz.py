@@ -1,4 +1,4 @@
-#matriz.py
+
 from nodo_dato import NodoDato
 
 class Matriz:

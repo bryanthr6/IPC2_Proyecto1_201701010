@@ -1,4 +1,4 @@
-#nodo_dato.py
+
 class NodoDato:
     def __init__(self, x, y, valor):
         self.x = x  # Fila en la matriz

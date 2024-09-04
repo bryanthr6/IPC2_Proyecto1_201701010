@@ -1,4 +1,4 @@
-#lista_patrones.py
+
 # Definición de la clase Nodo para la lista enlazada
 class NodoEnlazado:
     def __init__(self, dato):

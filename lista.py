@@ -1,4 +1,4 @@
-#lista.py
+
 from nodo import Nodo
 
 class ListaCircular:

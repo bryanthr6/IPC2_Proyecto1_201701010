@@ -1,4 +1,4 @@
-#procesar.py
+
 from lista_patrones import ListaPatrones  # Importa ListaPatrones
 from lista_suma import ListaSuma  # Importa ListaSuma
 from matriz import Matriz  # Importa la clase Matriz

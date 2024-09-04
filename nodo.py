@@ -1,4 +1,4 @@
-#nodo.py
+
 class Nodo:
     def __init__(self, nombre, matriz):
         self.nombre = nombre  # Nombre de la matriz
