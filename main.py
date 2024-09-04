@@ -1,13 +1,19 @@
-import xml.etree.ElementTree as ET
 from cargar import cargar_archivo
-from matriz import Matriz
-from xml.dom import minidom
-from procesador import ProcesadorMatriz
+from procesar import ProcesadorMatriz
+from escribir import escribir_archivo_salida
+from generar_grafica import generar_grafica_doble  # Nueva importación
+
+def imprimir_matriz(matriz):
+    actual = matriz.head
+    for i in range(1, matriz.n + 1):
+        fila = ""
+        for j in range(1, matriz.m + 1):
+            valor = matriz.obtener_dato(i, j)
+            fila += f"{valor} "
+        print(fila.strip())
 
 def main():
-    archivo_xml = None
-    matriz = None
-    procesador = None
+    lista_matrices = None
 
     opcion = 0
     while opcion != 6:
@@ -27,31 +33,56 @@ def main():
 
         match opcion:
             case 1:
-                archivo_xml = cargar_archivo()
+                if lista_matrices is None:
+                    lista_matrices = cargar_archivo()
+                else:
+                    nuevas_matrices = cargar_archivo()
+                    if nuevas_matrices:
+                        actual = nuevas_matrices.head
+                        while True:
+                            lista_matrices.agregar(actual.nombre, actual.matriz)
+                            actual = actual.siguiente
+                            if actual == nuevas_matrices.head:
+                                break
             case 2:
-                if archivo_xml is not None:
-                    print("Calculando matriz binaria...")
-                    n, m, datos = ProcesadorMatriz.procesar_datos_xml(archivo_xml)
-                    if n is not None and m is not None:
-                        matriz_binaria = ProcesadorMatriz(datos).convertir_a_matriz_binaria()
-                        print("Realizando agrupamiento...")
-                        grupos = ProcesadorMatriz(datos).agrupar_tuplas(matriz_binaria)
-                        print("Realizando suma de tuplas...")
-                        matriz_reducida = ProcesadorMatriz(datos).crear_matriz_reducida(grupos)
-                        matriz = Matriz("Matriz_Salida", len(matriz_reducida), len(matriz_reducida[0]))
-                        for i in range(len(matriz_reducida)):
-                            for j in range(len(matriz_reducida[i])):
-                                matriz.agregar_dato(matriz_reducida[i][j], i, j)
-                        procesador = ProcesadorMatriz(matriz_reducida)
-                        print("Archivo procesado.")
+                if lista_matrices:
+                    lista_matrices.mostrar()
+                    nombre_matriz = input("Ingrese el nombre de la matriz a procesar: ")
+                    matriz = lista_matrices.buscar(nombre_matriz)
+                    if matriz:
+                        print("Matriz Original:")
+                        imprimir_matriz(matriz.matriz)
+                        
+                        procesador = ProcesadorMatriz(matriz.matriz)
+                        
+                        matriz_patrones = procesador.generar_matriz_patrones()
+                        print("\nMatriz de Patrones de Acceso:")
+                        imprimir_matriz(matriz_patrones)
+                        
+                        matriz_reducida = procesador.procesar()
+                        print("\nMatriz Reducida:")
+                        imprimir_matriz(matriz_reducida)
+
+                        # Asociar la matriz reducida con la original
+                        matriz.matriz_reducida = matriz_reducida
+                        
+                        print("Matriz procesada correctamente.")
+                    else:
+                        print("ERROR: No se encontró la matriz especificada.")
                 else:
                     print("ERROR: No se ha cargado ningún archivo.")
             case 3:
-                if matriz is not None:
-                    nombre_archivo = "Matriz_Salida"
-                    ProcesadorMatriz.escribir_archivo_salida(nombre_archivo, matriz.obtener_matriz(), procesador.agrupar_tuplas(matriz_binaria))
+                if lista_matrices:
+                    lista_matrices.mostrar()
+                    nombre_matriz = input("Ingrese el nombre de la matriz a procesar para escribir archivo: ")
+                    matriz = lista_matrices.buscar(nombre_matriz)
+                    if matriz and matriz.matriz_reducida:
+                        ruta_salida = input("Ingrese la ruta donde desea guardar el archivo XML de salida: ")
+                        escribir_archivo_salida(matriz.matriz_reducida, ruta_salida)
+                    else:
+                        print("ERROR: No se ha procesado ninguna matriz o no se encontró la matriz especificada.")
                 else:
-                    print("ERROR: No se ha procesado ningún archivo.")
+                    print("ERROR: No se ha cargado ningún archivo.")
             case 4:
                 print("********************************************************")
                 print("*              Datos del estudiante                    *")
@@ -63,7 +94,17 @@ def main():
                 print("********************************************************")
                 print(" ")
             case 5:
-                print("Generando gráfica...")
+                if lista_matrices:
+                    lista_matrices.mostrar()
+                    nombre_matriz = input("Ingrese el nombre de la matriz para generar gráfica: ")
+                    matriz = lista_matrices.buscar(nombre_matriz)
+                    if matriz and matriz.matriz_reducida:
+                        archivo_salida = input("Ingrese el nombre del archivo de salida para la gráfica: ")
+                        generar_grafica_doble(matriz.matriz, matriz.matriz_reducida, archivo_salida)
+                    else:
+                        print("ERROR: No se ha procesado ninguna matriz o no se encontró la matriz especificada.")
+                else:
+                    print("ERROR: No se ha cargado ningún archivo.")
             case 6:
                 print("Saliendo del programa...")
             case _:

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<matrices>
+    <matriz nombre="Ejemplo3" n="5" m="4">
+        <dato x="1" y="1">2</dato>
+        <dato x="1" y="2">3</dato>
+        <dato x="1" y="3">0</dato>
+        <dato x="1" y="4">4</dato>
+        <dato x="2" y="1">5</dato>
+        <dato x="2" y="2">4</dato>
+        <dato x="2" y="3">0</dato>
+        <dato x="2" y="4">3</dato>
+    </matriz>
+</matrices>
